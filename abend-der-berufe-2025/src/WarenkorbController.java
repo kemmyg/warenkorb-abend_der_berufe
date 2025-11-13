@@ -1,34 +1,31 @@
-import lebensmittel.Lebensmittel;
-import lebensmittel.ObstGemuese;
-import lebensmittel.Suessigkeiten;
-import lebensmittel.Tierisches;
+import artikel.Artikel;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class WarenkorbController {
-    private static final Map<String, Lebensmittel> PRODUCTS = new HashMap<>();
+    private static final Map<String, Artikel> PRODUCTS = new HashMap<>();
     private static double cartTotalNetto = 0.0;
     private static double cartTotalSteuer = 0.0;
 
     private static void initializeProducts() {
         // Obst & Gemüse (7 %)
-        PRODUCTS.put("Apfel", new ObstGemuese("Apfel", 0.47)); // Brutto ~ 0.50 €
-        PRODUCTS.put("Banane", new ObstGemuese("Banane", 0.75)); // Brutto ~ 0.80 €
+        PRODUCTS.put("Apfel", new Artikel("Apfel", 0.47, 7));
+        PRODUCTS.put("Banane", new Artikel("Banane", 0.75, 7));
 
         // Süßigkeiten (19 %)
-        PRODUCTS.put("Keks", new Suessigkeiten("Keks", 1.01)); // Brutto ~ 1.20 €
+        PRODUCTS.put("Keks", new Artikel("Keks", 1.01, 19));
 
         // Tierisches (19 %)
-        PRODUCTS.put("Milch", new Tierisches("Milch", 1.26)); // Brutto ~ 1.50 €
+        PRODUCTS.put("Milch", new Artikel("Milch", 1.26, 19));
     }
 
     public static void addItem(String itemName) {
         if (!PRODUCTS.containsKey(itemName)) {
             System.out.printf("❌ Fehler: Das Produkt '%s' ist uns unbekannt.%n", itemName);
         }
-        Lebensmittel item = PRODUCTS.get(itemName);
+        Artikel item = PRODUCTS.get(itemName);
 
         cartTotalNetto += item.getPreisNetto();
         cartTotalSteuer += item.getSteuerBetrag();
@@ -83,7 +80,7 @@ public class WarenkorbController {
 
     private static void showProductsToBuy() {
         System.out.println("\nVerfügbare Produkte (Bruttopreis):");
-        for (Lebensmittel item : PRODUCTS.values()) {
+        for (Artikel item : PRODUCTS.values()) {
             System.out.printf("- %s: %.2f € (MwSt: %d%%)%n", item.getName(), item.getPreisBrutto(), item.getSteuerSatz());
         }
     }

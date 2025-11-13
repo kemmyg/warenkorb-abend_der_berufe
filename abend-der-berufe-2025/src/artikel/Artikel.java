@@ -1,11 +1,11 @@
-package lebensmittel;
+package artikel;
 
-public abstract class Lebensmittel {
+public class Artikel {
     protected String name;
     protected double preisNetto; // Preis ohne Mehrwertsteuer
     protected int steuerSatz;    // MwSt. in Prozent (z.B. 7 oder 19)
 
-    public Lebensmittel(String name, double preisNetto, int steuerSatz) {
+    public Artikel(String name, double preisNetto, int steuerSatz) {
         this.name = name;
         this.preisNetto = preisNetto;
         this.steuerSatz = steuerSatz;
