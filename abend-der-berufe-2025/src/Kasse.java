@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class WarenkorbController {
+public class Kasse {
     private static final Map<String, Artikel> PRODUCTS = new HashMap<>();
     private static double cartTotalNetto = 0.0;
     private static double cartTotalSteuer = 0.0;
@@ -38,7 +38,7 @@ public class WarenkorbController {
         System.out.printf("🛒 Aktueller Gesamtpreis: %.2f €%n", cartTotalNetto + cartTotalSteuer);
     }
 
-    public void runWarenkorb() {
+    public void starteKassieren() {
         initializeProducts();
         Scanner scanner = new Scanner(System.in);
         printHeader();
